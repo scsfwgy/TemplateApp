@@ -1,0 +1,195 @@
+import java.text.SimpleDateFormat
+
+apply plugin: 'walle'
+
+
+android {
+    def keystore = file('sign/keystore.properties') as File
+    if (keystore.exists()) {
+        Properties props = new Properties()
+        props.load(new FileInputStream(keystore))
+        signingConfigs {
+            release {
+                storeFile file(props.getProperty('STORE_FILE_RELEASE'))
+                storePassword props.getProperty('STORE_PASSWORD_RELEASE')
+                keyAlias props.getProperty('KEY_ALIAS_RELEASE')
+                keyPassword props.getProperty('KEY_PASSWORD_RELEASE')
+                v2SigningEnabled true
+            }
+            debug {
+                storeFile file(props.getProperty('STORE_FILE_DEBUG'))
+                storePassword props.getProperty('STORE_PASSWORD_DEBUG')
+                keyAlias props.getProperty('KEY_ALIAS_DEBUG')
+                keyPassword props.getProperty('KEY_PASSWORD_DEBUG')
+                v2SigningEnabled true
+            }
+        }
+    } else {
+        logger.info 'keystore properties file does not exists'
+    }
+
+    buildTypes {
+        /*release isDebug 均配置正式URL 测试URL在AppConfig中配置修改 AppConfig中不要暴漏正式服URL*/
+        release {
+            //上线关闭，打开可以看到日志，方便调试。但是这个打开会导致BuildConfig.DEBUG=true
+            debuggable false
+            minifyEnabled true
+            zipAlignEnabled true // 开启ZipAlign优化
+            shrinkResources true // 移除无用的resource文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            manifestPlaceholders = [
+                    app_label_name: "@string/app_app_name",
+                    icon          : "@drawable/ic_launcher",
+                    roundIcon     : "@drawable/ic_launcher_round",
+                    APP_ID        : account.app.applicationId,
+                    FILE_AUTHORITY: account.app.applicationId + ".fileProvider",
+            ]
+
+            buildConfigField("String", "APP_ID", "\"" + account.app.applicationId + "\"")
+            buildConfigField("String", "FILE_AUTHORITY", "\"" + account.app.applicationId + ".fileProvider" + "\"")
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+
+            manifestPlaceholders = [
+                    app_label_name: "@string/app_app_name_debug",
+                    icon          : "@drawable/ic_launcher_beta",
+                    roundIcon     : "@drawable/ic_launcher_round_beta",
+                    APP_ID        : account.app.applicationId_debug,
+                    FILE_AUTHORITY: account.app.applicationId_debug + ".fileProvider",
+
+            ]
+            buildConfigField("String", "APP_ID", "\"" + account.app.applicationId_debug + "\"")
+            buildConfigField("String", "FILE_AUTHORITY", "\"" + account.app.applicationId_debug + ".fileProvider" + "\"")
+        }
+
+    }
+
+}
+
+dependencies {
+    // https://github.com/Meituan-Dianping/walle
+    implementation 'com.meituan.android.walle:library:1.1.6'
+}
+
+walle {
+
+//    projectName - 项目名字
+//    appName - App模块名字
+//    packageName - applicationId (App包名packageName)
+//    buildType - buildType (release/debug等)
+//    channel - channel名称 (对应渠道打包中的渠道名字)
+//    versionName - versionName (显示用的版本号)
+//    versionCode - versionCode (内部版本号)
+//    buildTime - buildTime (编译构建日期时间)
+//    fileSHA1 - fileSHA1 (最终APK文件的SHA1哈希值)
+//    flavorName - 编译构建 productFlavors 名
+
+    //最新包，会覆盖之前的
+    //File newPackage = new File("${project.buildDir}/../package/release/new")
+    //归档
+    //File archive = new File("${project.buildDir}/../package/release/${new SimpleDateFormat("yyMMddHHmmss").format(new Date())}")
+
+    //apkOutputFolder = newPackage
+    //apkOutputFolder = archive
+
+
+    apkFileNameFormat = '芝麻汇_${channel}_${buildType}_v${versionName}_${versionCode}_${buildTime}.apk'
+
+    //configFile与channelFile两者必须存在一个，否则无法生成渠道包。两者都存在时优先执行configFile
+    //channelFile = new File("${project.getProjectDir()}/sign/channel")
+    //configFile = new File("${project.getProjectDir()}/config.json")
+}
+//如何使用：双击：右侧Gradle->:app->Tasks->package->assembleReleaseChannels/assembleDebugChannels
+
+//不同类型包名字
+String NAME_RELEASE = "release"
+String NAME_DEBUG = "debug"
+//根目录
+String packageRootPath = "${project.buildDir}/../package/"
+// 渠道信息
+String releaseChannelPath = "${project.getProjectDir()}/sign/channel"
+String debugChannelPath = "${project.getProjectDir()}/sign/channel_debug"
+//打包地址
+//String releasePackagePath = packageRootPath + NAME_RELEASE + "/new"
+//String debugPackagePath = packageRootPath + NAME_DEBUG + "/new"
+
+String releasePackagePath = packageRootPath + NAME_RELEASE + "/" + new SimpleDateFormat("yyMMddHHmmss").format(new Date())
+String debugPackagePath = packageRootPath + NAME_DEBUG + "/" + new SimpleDateFormat("yyMMddHHmmss").format(new Date())
+//归档地址
+String releaseArchivePackagePath = packageRootPath + NAME_RELEASE + "/" + new SimpleDateFormat("yyMMddHHmmss").format(new Date())
+String debugArchivePackagePath = packageRootPath + NAME_DEBUG + "/" + new SimpleDateFormat("yyMMddHHmmss").format(new Date())
+
+afterEvaluate {
+    project.android.applicationVariants.all { variant ->
+        variant.assemble.doFirst {
+            if (variant.buildType.name == NAME_RELEASE) {
+                //如果存在先删除
+                File apkOutputFolder = new File(releasePackagePath)
+                if (apkOutputFolder.isDirectory()) {
+                    apkOutputFolder.deleteDir()
+                }
+
+                project.walle.channelFile = new File(releaseChannelPath)
+                project.walle.apkOutputFolder = apkOutputFolder
+            } else if (variant.buildType.name == NAME_DEBUG) {
+                //如果存在先删除
+                File apkOutputFolder = new File(debugPackagePath)
+                if (apkOutputFolder.isDirectory()) {
+                    apkOutputFolder.deleteDir()
+                }
+                project.walle.channelFile = new File(debugChannelPath)
+                project.walle.apkOutputFolder = apkOutputFolder
+            }
+        }
+        /**
+         * 打包完成进行归档
+         */
+        variant.assemble.doLast {
+            //睡一秒后开始归档
+            Thread.sleep(3000)
+            //打完包进行归档
+            if (variant.buildType.name == NAME_RELEASE) {
+                String newPath = releasePackagePath
+                String archivePath = releaseArchivePackagePath
+                //fixme 暂时有问题
+                //copyDir(newPath, archivePath)
+            } else if (variant.buildType.name == NAME_DEBUG) {
+                String newPath = debugPackagePath
+                String archivePath = debugArchivePackagePath
+                //fixme 暂时有问题
+                //copyDir(newPath, archivePath)
+            }
+        }
+    }
+}
+
+static void copyDir(String oldPath, String newPath) throws IOException {
+    File file = new File(oldPath)
+    //文件名称列表  todo:这里会出现空指针
+    String[] filePath = file.list()
+    if (filePath == null || filePath.length == 0) {
+        throw new IllegalArgumentException("打包出错，请检查：filePath == null || filePath.length == 0")
+    }
+
+    if (!(new File(newPath)).exists()) {
+        (new File(newPath)).mkdir()
+    }
+
+    for (int i = 0; i < filePath.length; i++) {
+        if ((new File(oldPath + file.separator + filePath[i])).isDirectory()) {
+            copyDir(oldPath + file.separator + filePath[i], newPath + file.separator + filePath[i])
+        }
+        if (new File(oldPath + file.separator + filePath[i]).isFile()) {
+            copyFile(oldPath + file.separator + filePath[i], newPath + file.separator + filePath[i])
+        }
+
+    }
+}

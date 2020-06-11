@@ -1,0 +1,4 @@
+include ':lib:lib_wrapper'
+include ':lib:lib_import'
+include ':app'
+rootProject.name = "TemplateApp"

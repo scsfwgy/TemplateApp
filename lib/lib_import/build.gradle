@@ -63,4 +63,7 @@ dependencies {
 
     //https://github.com/Blankj/AndroidUtilCode
     api 'com.blankj:utilcode:1.26.0'
+
+    //https://github.com/H07000223/FlycoTabLayout/blob/master/README_CN.md
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 }

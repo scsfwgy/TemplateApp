@@ -13,14 +13,6 @@ android {
 
 dependencies {
     /**
-     * 默认配置，每个module都生效
-     */
-    api fileTree(dir: "libs", include: ["*.jar"])
-    testApi 'junit:junit:4.12'
-    androidTestApi 'androidx.test.ext:junit:1.1.1'
-    androidTestApi 'androidx.test.espresso:espresso-core:3.2.0'
-
-    /**
      * AndroidX相关库
      * 查看版本：https://developer.android.com/jetpack/androidx/versions?hl=zh-cn
      */

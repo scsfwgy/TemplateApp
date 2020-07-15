@@ -32,5 +32,11 @@ android {
 }
 
 dependencies {
-
+    /**
+     * 默认配置，每个module都生效
+     */
+    api fileTree(dir: "libs", include: ["*.jar"])
+    testApi 'junit:junit:4.13'
+    androidTestApi 'androidx.test.ext:junit:1.1.1'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.2.0'
 }

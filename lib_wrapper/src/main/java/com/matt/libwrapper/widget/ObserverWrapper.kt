@@ -2,6 +2,7 @@ package com.matt.libwrapper.widget
 
 import android.util.Log
 import com.matt.libwrapper.LibWrapperInit
+import com.matt.libwrapper.widget.simple.SimpleCatchObserver
 import com.matt.libwrapper.widget.simple.SimpleObserver
 import io.reactivex.disposables.Disposable
 
@@ -12,25 +13,18 @@ import io.reactivex.disposables.Disposable
  * 描 述 ：
  * ============================================================
  **/
-open class ObserverWrapper<T>(private val mIDisposable: IDisposable? = null) : SimpleObserver<T>() {
+open class ObserverWrapper<T>(private val mIDisposable: IDisposable? = null) :
+    SimpleCatchObserver<T>() {
 
     val TAG = LibWrapperInit.TAG
 
-    override fun onSubscribe(d: Disposable) {
-        super.onSubscribe(d)
+    override fun onCatchSubscribe(d: Disposable) {
+        super.onCatchSubscribe(d)
         val iDisposable = mIDisposable
         if (iDisposable != null) {
             iDisposable.addDisposable(d)
         } else {
             Log.w(TAG, "没有传递mIDisposable,需要自己手动回收Disposable，不然会内存泄露！！！")
         }
-    }
-
-    override fun onNext(t: T) {
-        super.onNext(t)
-    }
-
-    override fun onError(e: Throwable) {
-        super.onError(e)
     }
 }

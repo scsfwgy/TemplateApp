@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.blankj.utilcode.util.ToastUtils
+import com.matt.libwrapper.widget.IDisposable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
@@ -18,7 +19,7 @@ import io.reactivex.disposables.Disposable
  * 描 述 ：
  * ============================================================
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), IDisposable {
 
     val TAG: String by lazy {
         javaClass::class.java.simpleName
@@ -33,10 +34,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     val mCompositeDisposable by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         CompositeDisposable()
-    }
-
-    fun add(disposable: Disposable) {
-        mCompositeDisposable.add(disposable)
     }
 
     fun show(msg: String?, short: Boolean = true) {
@@ -87,4 +84,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return ViewModelProvider(this).get(modelClass)
     }
 
+    override fun addDisposable(disposable: Disposable) {
+        mCompositeDisposable.addAll(disposable)
+    }
 }

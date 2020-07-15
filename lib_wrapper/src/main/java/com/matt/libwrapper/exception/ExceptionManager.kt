@@ -1,11 +1,7 @@
-package com.matt.sample_base.exception
+package com.matt.libwrapper.exception
 
 import android.util.Log
 import com.blankj.utilcode.util.ToastUtils
-import com.matt.libwrapper.exception.ExceptionType
-import com.matt.libwrapper.exception.NoLoginException
-import com.matt.libwrapper.exception.ParamsException
-import com.matt.libwrapper.exception.ReleaseException
 import com.matt.libwrapper.ui.base.BaseActivity
 
 

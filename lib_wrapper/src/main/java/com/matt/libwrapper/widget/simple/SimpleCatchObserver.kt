@@ -61,7 +61,7 @@ abstract class SimpleCatchObserver<T> : SimpleObserver<T>() {
 
     }
 
-    open fun onHandlerException(e: Exception) {
+    open fun onHandlerException(e: Throwable) {
         ExceptionManager.handlerException(e, null, ExceptionType.RX)
     }
 

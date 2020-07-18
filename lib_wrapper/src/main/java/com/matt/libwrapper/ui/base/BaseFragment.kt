@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.matt.libwrapper.widget.IDisposable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 /**
  * ============================================================
@@ -12,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
  * 描 述 ：
  * ============================================================
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), IDisposable {
     val TAG: String by lazy {
         javaClass::class.java.simpleName
     }
@@ -32,11 +35,24 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
+    val mCompositeDisposable by lazy {
+        CompositeDisposable()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mCompositeDisposable.clear()
+    }
+
     open fun <T : ViewModel> getVMByActivity(modelClass: Class<T>): T {
         return mBaseActivity.getVM(modelClass)
     }
 
     open fun <T : ViewModel> getVMByFragment(modelClass: Class<T>): T {
         return ViewModelProvider(this).get(modelClass)
+    }
+
+    override fun addDisposable(disposable: Disposable) {
+        mCompositeDisposable.add(disposable)
     }
 }

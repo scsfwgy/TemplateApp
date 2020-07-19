@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('lib_common.gradle')
 //apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.scsfwgy'
+//group='com.github.scsfwgy'
 
 android {
     defaultConfig {

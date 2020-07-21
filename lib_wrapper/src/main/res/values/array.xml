@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--左到右-->
+    <array name="wrapper_game">
+        <item>#FF976D</item>
+        <item>#FB6F8C</item>
+    </array>
+</resources>

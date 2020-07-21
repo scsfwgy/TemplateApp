@@ -1,0 +1,70 @@
+<resources>
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--尺寸规范化-->
+    <!--
+    <!-
+    以下尺寸依据720*1280设计
+    -->
+    <!--默认状态栏高度，具体以系统返回调整-->
+    <dimen name="wrapper_def_status_bar">25dp</dimen>
+    <!--导航栏高度，也就是每个页面的title的高度。-->
+    <dimen name="wrapper_navigation_bar">98dp</dimen>
+    <!--标签栏高度，首页底部四个Tab的高度。只有这一个用途。-->
+    <dimen name="wrapper_main_bottom_tab">48dp</dimen>
+    <!--容器的默认左边距-->
+    <dimen name="wrapper_def_continer_paddingLeft">14dp</dimen>
+    <!--容器的默认右边距-->
+    <dimen name="wrapper_def_continer_paddingRight">14dp</dimen>
+    <!--分割线高度（如果部分地方识别不出来，则全局改为1dp）-->
+    <dimen name="wrapper_division">0.5dp</dimen>
+    <!--分割线默认留白，设置中的item之间的高度、消息页面head和下面的item的高度留白-->
+    <dimen name="wrapper_def_division_blank">9dp</dimen>
+    <!--item的默认高度,大部分的item,比如设置中的item的高度-->
+    <dimen name="wrapper_def_item">48dp</dimen>
+    <!--head的默认高度,这个有很大局限性，具体以业务为准。-->
+    <dimen name="wrapper_def_head">40dp</dimen>
+    <!--按钮的圆角，大圆角。其实APP的圆角样式大部分就两种：特别突出的、一个小的-->
+    <dimen name="wrapper_def_btn_corners_big">22dp</dimen>
+    <!--按钮的圆角，小圆角-->
+    <dimen name="wrapper_def_btn_corners_small">4dp</dimen>
+    <!--默认内容距离上面的边距，一般指第一个item距离上边距-->
+    <dimen name="wrapper_def_marginTop_item_first">11dp</dimen>
+
+
+    <!--文字尺寸-->
+    <!--持仓账户资金-->
+    <dimen name="wrapper_font_max">28sp</dimen>
+    <!--导航栏居中标题、弹窗标题文字、弹窗btn-->
+    <dimen name="wrapper_font_navigation_title">18sp</dimen>
+    <dimen name="wrapper_font_dialog_title">18sp</dimen>
+    <dimen name="wrapper_font_dialog_btn">18sp</dimen>
+    <!--tab切换、导航栏NAV右边字体、item文字-->
+    <dimen name="wrapper_font_tab">15sp</dimen>
+    <dimen name="wrapper_font_item">15sp</dimen>
+    <dimen name="wrapper_font_side">15sp</dimen>
+    <!--内容区、用户名、产品名字、btn文字 、弹窗内容-->
+    <dimen name="wrapper_font_content">14sp</dimen>
+    <dimen name="wrapper_font_name">14sp</dimen>
+    <!--title右侧的文字-->
+    <dimen name="wrapper_font_navigation_right">14sp</dimen>
+    <dimen name="wrapper_font_btn">14sp</dimen>
+    <dimen name="wrapper_font_dialog_content">14sp</dimen>
+    <!--空白页提示语-->
+    <dimen name="wrapper_font_epmty">13sp</dimen>
+    <!--内容区描述语、icon名称、时间、提示-->
+    <dimen name="wrapper_font_hint">12sp</dimen>
+    <dimen name="wrapper_font_icon">12sp</dimen>
+    <dimen name="wrapper_font_time">12sp</dimen>
+    <dimen name="wrapper_font_tips">12sp</dimen>
+    <!--次级提示文字-->
+    <dimen name="wrapper_font_hint_small">10sp</dimen>
+
+
+</resources>

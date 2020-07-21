@@ -1,0 +1,159 @@
+<resources>
+
+    <!-- Base application theme-->
+    <style name="wrapper_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 状态栏颜色 -->
+        <item name="colorPrimary">@color/wrapper_theme_design</item>
+        <item name="colorPrimaryDark">@color/wrapper_theme_color_primary_dark</item>
+        <item name="colorAccent">@color/wrapper_theme_design</item>
+        <!--Button中英文不默认大写-->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:colorBackground">@color/wrapper_color_white_design</item>
+        <!--默认光标-->
+        <item name="android:textCursorDrawable">@drawable/wrapper_edittext_cursor</item>
+        <!--全局出入场动画-->
+        <item name="android:windowAnimationStyle">@style/wrapper_BaseAnimationActivity</item>
+
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/wrapper_container_bg_design</item>
+    </style>
+
+
+    <!--主题全屏-->
+    <style name="wrapper_AppTheme_Fullscreen" parent="wrapper_AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--启动页-->
+    <style name="wrapper_AppTheme_Launch" parent="wrapper_AppTheme_Fullscreen">
+<!--        <item name="android:windowBackground">@drawable/wrapper_bg_splash_bitmap</item>-->
+        <!--快速打开背景准备页-->
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+
+    <!--activity的出入场动画、包括Dialog如果有需求也可以在这里调整，可以全局生效-->
+    <style name="wrapper_BaseAnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/wrapper_slide_in_left</item>
+        <item name="android:activityOpenExitAnimation">@anim/wrapper_slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/wrapper_slide_in_right</item>
+        <item name="android:activityCloseExitAnimation">@anim/wrapper_slide_out_right</item>
+    </style>
+
+    <!--dialog的出入场动画、包括Dialog如果有需求也可以在这里调整，可以全局生效-->
+    <style name="wrapper_BaseAnimationDialog" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/wrapper_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/wrapper_dialog_exit</item>
+    </style>
+
+
+    <!--dialog的样式-->
+    <style name="wrapper_BaseDialogTheme" parent="android:style/Theme.Dialog">
+        <!--背景-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--backgroundDimEnabled 背景是否灰暗-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--是否显示标题栏-->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--全局出入场动画-->
+        <item name="android:windowAnimationStyle">@style/wrapper_BaseAnimationDialog</item>
+    </style>
+
+    <style name="wrapper_BaseDialogTheme2" parent="wrapper_BaseDialogTheme">
+        <!--backgroundDimEnabled 背景是否灰暗-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--是否半透明-->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <style name="wrapper_ImAudioDialogTheme" parent="wrapper_BaseDialogTheme">
+        <!--全局出入场动画-->
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <!--    所谓的基础组件，一定是满足最通用的需求，全局样式调整。如果不满足可以继承这个基础组件去实现，或者在xml中进行重写。-->
+    <!--基础组件样式,这些工作会非常繁杂，也很难抽象出共有属性-->
+    <style name="wrapper_rview_base">
+        <item name="ripple">true</item>
+    </style>
+
+    <!--RXXX容器组件可以引用这个style，有一些共有的属性。-->
+    <style name="wrapper_item_view_group_style" parent="wrapper_rview_base">
+        <item name="corner_radius">0dp</item>
+        <item name="background_normal">@color/wrapper_item_design</item>
+        <item name="background_pressed">@color/wrapper_item_press_design</item>
+        <item name="background_unable">@color/wrapper_item_design</item>
+        <item name="ripple_color">@color/wrapper_item_ripper</item>
+    </style>
+
+    <!--按钮通用设置-->
+    <style name="wrapper_rtextview_base" parent="wrapper_rview_base">
+        <item name="corner_radius">@dimen/wrapper_def_btn_corners_small</item>
+        <item name="background_normal">@color/wrapper_btn_normal</item>
+        <item name="background_pressed">@color/wrapper_btn_press</item>
+        <item name="background_unable">@color/wrapper_btn_unable</item>
+        <item name="ripple_color">@color/wrapper_btn_ripper</item>
+    </style>
+
+    <!--只有边框的按钮通用设置-->
+    <style name="wrapper_border_button" parent="wrapper_rview_base">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:gravity">center</item>
+        <item name="corner_radius">@dimen/wrapper_def_btn_corners_small</item>
+        <item name="border_width_normal">1dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="border_width_pressed">1dp</item>
+        <item name="border_color_normal">@color/wrapper_btn_normal</item>
+        <item name="border_color_pressed">@color/wrapper_btn_press</item>
+        <item name="text_color_normal">@color/wrapper_theme_design</item>
+        <item name="text_color_pressed">@color/wrapper_theme_design</item>
+        <item name="ripple_color">@color/wrapper_btn_press</item>
+    </style>
+
+    <!--提交按钮的通用设置，不满足可以在xml中重写-->
+    <style name="wrapper_common_btn" parent="wrapper_rtextview_base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:text">@string/wrapper_Placeholder</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/wrapper_txt_white_design</item>
+    </style>
+    <!--Toolbar White Style-->
+    <style name="wrapper_ToolbarTitleWhite" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/wrapper_theme_tool_bar_txt_color</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!--Toolbar White Style-->
+    <style name="wrapper_ToolbarTitleBlue" parent="wrapper_ToolbarTitleWhite">
+        <item name="android:textColor">@color/wrapper_color_white_design</item>
+    </style>
+    <!--wrapper_include_toolbar popupTheme  white-->
+    <style name="wrapper_ToolbarPopupThemeWhite" parent="@style/ThemeOverlay.AppCompat">
+        <item name="android:colorBackground">@color/wrapper_color_white_design</item>
+        <item name="android:textColor">@color/wrapper_txt_333_design</item>
+    </style>
+
+    <style name="wrapper_GalaxyZooThemeToolbarWhite" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorPrimary">@color/wrapper_txt_333_design</item>
+        <item name="colorControlNormal">@color/wrapper_txt_333_design</item>
+        <item name="actionMenuTextColor">@color/wrapper_txt_333_design</item>
+        <item name="android:textColorSecondary">@color/wrapper_txt_333_design</item>
+    </style>
+
+    <style name="wrapper_GalaxyZooThemeToolbarDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorPrimary">@color/wrapper_color_white_design</item>
+        <item name="colorControlNormal">@color/wrapper_color_white_design</item>
+        <item name="actionMenuTextColor">@color/wrapper_color_white_design</item>
+        <item name="android:textColorSecondary">@color/wrapper_color_white_design</item>
+    </style>
+
+</resources>

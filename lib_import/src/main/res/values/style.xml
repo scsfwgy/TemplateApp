@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="import_permission_PermissionActivity" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@android:color/transparent
+        </item>
+    </style>
+
+
+    <style name="import_AlertTheme" parent="Base.Theme.AppCompat">
+        <item name="alertStyle">@style/import_AlertStyle</item>
+    </style>
+
+    <!--Alerter-->
+    <style name="import_AlertStyle" parent="@android:style/Widget">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/import_alerter_alert_min_height</item>
+        <item name="android:maxHeight">@dimen/import_alerter_alert_max_height</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">top</item>
+        <item name="android:paddingTop">@dimen/import_alerter_alert_padding</item>
+    </style>
+
+    <style name="import_AlertTextAppearance">
+        <item name="android:textColor">@color/import_alert_default_text_color</item>
+    </style>
+
+    <style name="import_AlertTextAppearance.Title">
+        <item name="android:textSize">@dimen/import_alerter_text_medium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="import_AlertTextAppearance.Text">
+        <item name="android:textSize">@dimen/import_alerter_text_small</item>
+    </style>
+
+</resources>

@@ -63,7 +63,7 @@ abstract class HandleExceptionFragment : BaseFragment() {
         }
     }
 
-    fun onCatchCreate(savedInstanceState: Bundle?) {
+    open fun onCatchCreate(savedInstanceState: Bundle?) {
         getBundleExtras(arguments)
     }
 

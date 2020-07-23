@@ -14,9 +14,6 @@ import com.matt.libwrapper.exception.ExceptionType
  */
 abstract class HandleExceptionActivity : BaseActivity() {
 
-    abstract fun onCatchCreate(savedInstanceState: Bundle?)
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             super.onCreate(savedInstanceState)
@@ -35,6 +32,9 @@ abstract class HandleExceptionActivity : BaseActivity() {
         }
 
     }
+
+    abstract fun onCatchCreate(savedInstanceState: Bundle?)
+
 
     open fun onCatchDestroy() {
 

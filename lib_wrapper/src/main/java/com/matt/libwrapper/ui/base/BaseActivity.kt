@@ -232,6 +232,7 @@ abstract class BaseActivity : AppCompatActivity(), IDisposable {
         return ContextCompat.getDrawable(mContext, drawableId)!!
     }
 
+    @ColorInt
     fun getColor2(@ColorRes colorId: Int): Int {
         return ContextCompat.getColor(mContext, colorId)
     }

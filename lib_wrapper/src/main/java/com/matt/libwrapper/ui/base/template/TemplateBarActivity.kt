@@ -15,7 +15,7 @@ import com.matt.libwrapper.ui.base.HandleExceptionActivity
 import com.matt.libwrapper.ui.base.template.Template.Companion.TEMPLATETYPE_DEFVIEW
 import com.matt.libwrapper.ui.base.template.Template.Companion.TEMPLATETYPE_REFRESHVIEW
 import com.matt.libwrapper.ui.base.template.Template.Companion.TEMPLATETYPE_STRETCHSCROLLVIEW
-import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import kotlinx.android.synthetic.main.wrapper_activity_template_bar.*
 import kotlinx.android.synthetic.main.wrapper_include_app_bar.view.*
 

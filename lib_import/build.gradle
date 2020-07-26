@@ -71,10 +71,8 @@ dependencies {
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
 
     // https://github.com/scwang90/SmartRefreshLayout
-    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
-    //没有使用特殊Header，可以不加这行
-    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.2'
-
+    api 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    api 'com.scwang.smart:refresh-header-classics:2.0.1'
 
     //https://github.com/razerdp/BasePopup
     api 'com.github.razerdp:BasePopup:2.2.3'

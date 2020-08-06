@@ -79,4 +79,7 @@ dependencies {
 
     //https://github.com/RuffianZhong/RWidgetHelper
     api 'com.ruffian.library:RWidgetHelper-AndroidX:0.0.5'
+
+    //https://github.com/greenrobot/EventBus
+    api 'org.greenrobot:eventbus:3.2.0'
 }

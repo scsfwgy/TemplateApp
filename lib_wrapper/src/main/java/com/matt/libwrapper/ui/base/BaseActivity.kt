@@ -21,6 +21,7 @@ import com.matt.libwrapper.R
 import com.matt.libwrapper.widget.IDisposable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.EventBus
 
 /**
  * ============================================================
@@ -66,6 +67,9 @@ abstract class BaseActivity : AppCompatActivity(), IDisposable {
         }
         super.onCreate(savedInstanceState)
         getIntentExtras(intent)
+        if (eventbusEnable()) {
+            EventBus.getDefault().register(this)
+        }
         if (swipeBackEnable()) {
             swipeBack()
         }
@@ -74,10 +78,18 @@ abstract class BaseActivity : AppCompatActivity(), IDisposable {
         }
     }
 
+
+    open fun eventbusEnable(): Boolean {
+        return false
+    }
+
     open fun getIntentExtras(intent: Intent) {}
 
     override fun onDestroy() {
         super.onDestroy()
+        if (eventbusEnable()) {
+            EventBus.getDefault().unregister(this)
+        }
         if (mCompositeDisposable.size() > 0) {
             mCompositeDisposable.clear()
         }

@@ -1,12 +1,14 @@
 package com.matt.libwrapper.ui.base
 
 import android.content.Context
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.matt.libwrapper.widget.IDisposable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.EventBus
 
 /**
  * ============================================================
@@ -39,9 +41,23 @@ abstract class BaseFragment : Fragment(), IDisposable {
         CompositeDisposable()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (eventBusEnable()) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        if (eventBusEnable()) {
+            EventBus.getDefault().unregister(this)
+        }
         mCompositeDisposable.clear()
+    }
+
+    open fun eventBusEnable(): Boolean {
+        return false
     }
 
     open fun <T : ViewModel> getVMByActivity(modelClass: Class<T>): T {

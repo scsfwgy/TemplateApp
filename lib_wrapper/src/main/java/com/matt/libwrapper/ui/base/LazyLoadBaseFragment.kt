@@ -16,6 +16,9 @@ abstract class LazyLoadBaseFragment : HandleExceptionFragment() {
     private var isViewCreated = false
     private var currentVisibleState = false
 
+    //暴露对外
+    var mCurrentVisible = false
+
 
     /**
      * 对用户第一次可见
@@ -30,6 +33,7 @@ abstract class LazyLoadBaseFragment : HandleExceptionFragment() {
      * @param visable
      */
     open fun onVisable(visable: Boolean) {
+        mCurrentVisible = visable
         Log.d(TAGs, javaClass.simpleName + "onVisable，是否可见： " + visable)
     }
 

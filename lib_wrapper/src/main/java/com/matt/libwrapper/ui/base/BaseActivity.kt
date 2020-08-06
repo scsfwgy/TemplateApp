@@ -67,7 +67,7 @@ abstract class BaseActivity : AppCompatActivity(), IDisposable {
         }
         super.onCreate(savedInstanceState)
         getIntentExtras(intent)
-        if (eventbusEnable()) {
+        if (eventBusEnable()) {
             EventBus.getDefault().register(this)
         }
         if (swipeBackEnable()) {
@@ -79,7 +79,7 @@ abstract class BaseActivity : AppCompatActivity(), IDisposable {
     }
 
 
-    open fun eventbusEnable(): Boolean {
+    open fun eventBusEnable(): Boolean {
         return false
     }
 
@@ -87,7 +87,7 @@ abstract class BaseActivity : AppCompatActivity(), IDisposable {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (eventbusEnable()) {
+        if (eventBusEnable()) {
             EventBus.getDefault().unregister(this)
         }
         if (mCompositeDisposable.size() > 0) {

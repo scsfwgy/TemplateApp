@@ -1,10 +1,25 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- 状态栏颜色 -->
+        <item name="colorPrimaryDark">@color/wrapper_theme_design</item>
+        <!--Button中英文不默认大写-->
+        <item name="android:textAllCaps">false</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:colorBackground">@color/wrapper_container_bg_design</item>
+        <!--默认光标-->
+        <item name="android:textCursorDrawable">@drawable/wrapper_edittext_cursor</item>
+        <!--全局出入场动画-->
+        <item name="android:windowAnimationStyle">@style/wrapper_BaseAnimationActivity</item>
+
+        <!--状态栏-->
+        <!--        不打开低版本（5.0以下？）沉浸式失效；打开会全局设置页面背景为透明，如果不设置默认上一个页面可见。所以这个暂时不打开。-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="android:windowIsTranslucent">false</item>
     </style>
 
 </resources>

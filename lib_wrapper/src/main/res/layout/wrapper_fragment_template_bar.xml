@@ -35,7 +35,7 @@
     </ScrollView>
 
     <!--使用刷新组件-->
-    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+    <com.matt.libwrapper.widget.refresh.DefSmartRefreshLayout
         android:id="@+id/wftb_dsrl_refreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,5 +57,5 @@
         </LinearLayout>
 
 
-    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+    </com.matt.libwrapper.widget.refresh.DefSmartRefreshLayout>
 </LinearLayout>

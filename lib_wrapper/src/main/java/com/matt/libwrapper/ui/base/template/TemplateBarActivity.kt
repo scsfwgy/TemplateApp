@@ -25,7 +25,7 @@ abstract class TemplateBarActivity : HandleExceptionActivity() {
         when {
             templateType() == TEMPLATETYPE_DEFVIEW -> getDefView()
             templateType() == TEMPLATETYPE_STRETCHSCROLLVIEW -> getScrollViewContainer()
-            templateType() == TEMPLATETYPE_REFRESHVIEW -> getSmartRefresh()
+            templateType() == TEMPLATETYPE_REFRESHVIEW -> getSmartRefreshContainer()
             else -> throw IllegalArgumentException("templateType()参数错误！")
         }
     }

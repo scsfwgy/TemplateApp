@@ -1,4 +1,4 @@
-package com.matt.libwrapper.widget
+package com.matt.libwrapper.ui.base.loading
 
 import io.reactivex.disposables.Disposable
 

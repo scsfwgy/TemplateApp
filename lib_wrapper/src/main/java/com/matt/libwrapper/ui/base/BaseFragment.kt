@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.matt.libwrapper.widget.IDisposable
+import com.matt.libwrapper.ui.base.loading.IDisposable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
@@ -17,7 +17,8 @@ import org.greenrobot.eventbus.EventBus
  * 描 述 ：
  * ============================================================
  */
-abstract class BaseFragment : Fragment(), IDisposable {
+abstract class BaseFragment : Fragment(),
+    IDisposable {
     val TAG: String by lazy {
         javaClass::class.java.simpleName
     }

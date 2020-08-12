@@ -18,7 +18,7 @@ import com.matt.libimport.widget.SwipePanel
 import com.matt.libimport.widget.hook.Api28Hook
 import com.matt.libimport.widget.statusbar.StatusBarUtil
 import com.matt.libwrapper.R
-import com.matt.libwrapper.widget.IDisposable
+import com.matt.libwrapper.ui.base.loading.IDisposable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
@@ -30,7 +30,8 @@ import org.greenrobot.eventbus.EventBus
  * 描 述 ：
  * ============================================================
  */
-abstract class BaseActivity : AppCompatActivity(), IDisposable {
+abstract class BaseActivity : AppCompatActivity(),
+    IDisposable {
 
     val TAG: String by lazy {
         javaClass::class.java.simpleName

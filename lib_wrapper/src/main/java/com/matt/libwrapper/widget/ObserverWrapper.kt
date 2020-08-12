@@ -2,8 +2,8 @@ package com.matt.libwrapper.widget
 
 import android.util.Log
 import com.matt.libwrapper.LibWrapperInit
+import com.matt.libwrapper.ui.base.loading.IDisposable
 import com.matt.libwrapper.widget.simple.SimpleCatchObserver
-import com.matt.libwrapper.widget.simple.SimpleObserver
 import io.reactivex.disposables.Disposable
 
 /**
